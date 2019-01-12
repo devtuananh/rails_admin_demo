@@ -3,6 +3,9 @@
   <br>
   <%= link_to 'New Post', new_post_path, class: "btn btn-primary", style: "margin-bottom: 10px" %>
 
+<div id="paginate_song">
+  <%= paginate @posts, theme: "twitter-bootstrap" %>
+</div>
   <table class="table table-condensed">
     <thead>
       <tr>

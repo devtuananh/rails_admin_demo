@@ -4,13 +4,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.5.1"
 
 gem "bootsnap", ">= 1.1.0", require: false
+gem "bootstrap-kaminari-views"
 gem "bootstrap-sass", "~> 3.3"
 gem "carrierwave"
 gem "cloudinary"
 gem "coffee-rails", "~> 4.2"
 gem "devise"
+gem "font-awesome-rails"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
+gem "kaminari"
 gem "puma", "~> 3.11"
 gem "rails", "~> 5.2.1"
 gem "rails_admin", "~> 1.3"
@@ -19,7 +22,6 @@ gem "sqlite3"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
 
-gem "font-awesome-rails"
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
