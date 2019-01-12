@@ -1,32 +1,40 @@
-<%= form_with(model: post, local: true) do |form| %>
+<%= form_for @post do |f| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
-      <% post.errors.full_messages.each do |message| %>
+        <% @post.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+  <div class="form-group">
+    <div class="fix-bot-pic upload-pic pic-profile">
+      <%= f.fields_for :image_attributes do |image_f| %>
+        <%= image_f.file_field :image_url, class: "input-file previewIMG" %>
+        <%= image_f.hidden_field :imageable_id, value: @post.id %>
+        <%= image_f.hidden_field :imageable_type, value: "image" %>
+      <% end %>
+      <label tabindex="0" class="input-file-trigger">
+        <%= t ".avatar" %> <i class="fa fa-camera"></i>
+      </label>
+    </div>
+    <%= image_tag get_image(@post), class: "image_cm preview-img" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit "Create", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -47,15 +47,7 @@ RailsAdmin.config do |config|
       end
     end
 
-    config.parent_controller = "::ApplicationController"
-    config.authorize_with do |controller|
-      unless current_user && current_user.admin?
-        redirect_to(
-          main_app.root_path,
-          alert: "You are not permitted to view this page"
-        )
-      end
-    end
+
    end
 
   ## == Devise ==
@@ -66,7 +58,15 @@ RailsAdmin.config do |config|
 
   ## == Cancan ==
   # config.authorize_with :cancan
-
+    config.parent_controller = "::ApplicationController"
+    config.authorize_with do |controller|
+      unless current_user && current_user.admin?
+        redirect_to(
+          main_app.root_path,
+          alert: "You are not permitted to view this page"
+        )
+      end
+    end
   ## == Pundit ==
   # config.authorize_with :pundit
 

@@ -1,12 +1,16 @@
 class User < ApplicationRecord
   enum role: [:user, :admin]
   attr_writer :login
-  validate :validate_username
 
+  has_many :posts
+  has_one :image, as: :imageable, dependent: :destroy
+
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
+  validate :validate_username
   validates :username, presence: :true, uniqueness: {case_sensitive: false}
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :validatable, authentication_keys: [:login]
-  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
 
   def login
     @login || self.username || self.email

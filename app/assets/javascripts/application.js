@@ -11,6 +11,17 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
+//= require jquery_ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+$(document).on('change', '.previewIMG', function() {
+   if (this.files && this.files[0]) {
+     var reader = new FileReader();
+     reader.onload = function (e) {
+       $('.preview-img').attr('src', e.target.result);
+     };
+     reader.readAsDataURL(this.files[0]);
+   }
+ });
