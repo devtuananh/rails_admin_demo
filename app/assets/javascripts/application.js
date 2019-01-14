@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require activestorage
 //= require turbolinks
+//= require cloudinary
 //= require_tree .
 $(document).on('change', '.previewIMG', function() {
    if (this.files && this.files[0]) {
